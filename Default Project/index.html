@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CG Tech Day — Carreira, Conexão e Tecnologia de MS</title>
+    <meta name="description" content="O encontro de quem faz tecnologia em Mato Grosso do Sul. Profissionais crescendo na carreira pela manhã, empresas e negócios se conectando à tarde.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="c-header" id="header">
+        <div class="header_inline">
+            <div class="inline_inner">
+                <div class="inline_logo inline_part">
+                    <a class="logo_anchor" href="#" aria-label="CG Tech Day">
+                        <span class="logo-cg">CG</span> Tech Day
+                    </a>
+                </div>
+                <nav class="inline_menu inline_part">
+                    <ul class="menu">
+                        <li class="menu_item"><a class="item_btn" href="#sobre"><span class="btn_label">Sobre</span></a></li>
+                        <li class="menu_item"><a class="item_btn" href="#programacao"><span class="btn_label">Programação</span></a></li>
+                        <li class="menu_item"><a class="item_btn" href="#palestrantes"><span class="btn_label">Palestrantes</span></a></li>
+                        <li class="menu_item"><a class="item_btn" href="#local"><span class="btn_label">Local</span></a></li>
+                    </ul>
+                    <a class="cta u-btn--3" href="#inscricao"><span class="btn_label">Inscreva-se</span></a>
+                    <button class="menu_btn js-menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                        <div class="btn_ico">
+                            <div class="ico_bar"></div>
+                            <div class="ico_bar"></div>
+                        </div>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <nav class="header_popup" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="popup_inner">
+            <ul class="menu">
+                <li class="menu_item"><a class="item_btn" href="#sobre"><span class="btn_label">Sobre</span></a></li>
+                <li class="menu_item"><a class="item_btn" href="#programacao"><span class="btn_label">Programação</span></a></li>
+                <li class="menu_item"><a class="item_btn" href="#palestrantes"><span class="btn_label">Palestrantes</span></a></li>
+                <li class="menu_item"><a class="item_btn" href="#local"><span class="btn_label">Local</span></a></li>
+                <li class="menu_item"><a class="item_btn item_btn--cta" href="#inscricao"><span class="btn_label">Inscreva-se</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main">
+        <!-- Hero -->
+        <section class="hero" id="hero">
+            <!-- Fundo: imagem (padrão) -->
+            <!--<div class="hero__bg" style="background-image: url('assets/hero-bg.jpg');"></div>-->
+
+            <!-- Fundo: vídeo (opcional) — descomente para usar vídeo em loop automático -->
+            
+            <video class="hero__video" autoplay muted loop playsinline poster="assets/hero-video.mp4">
+                <source src="assets/hero-video.mp4" type="video/mp4">
+            </video>
+            
+
+            <div class="hero__overlay"></div>
+            <div class="hero__dim"></div>
+            <div class="hero__content">
+                <div class="hero__badge">16 de Outubro de 2026 — Campo Grande, MS</div>
+                <h1 class="hero__title">Onde a tecnologia de <span class="text-accent">Mato Grosso do Sul</span> se conecta.</h1>
+                <p class="hero__subtitle">Profissionais crescendo na carreira pela manhã, empresas e negócios se conectando à tarde. Um dia completo para quem faz tecnologia em MS.</p>
+                <div class="hero__subrow">
+                    <div class="hero__actions">
+                        <a href="#inscricao" class="btn btn--primary btn--lg">
+                            <span>Garanta sua vaga</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#programacao" class="btn btn--ghost btn--lg">
+                            <span>Ver programação</span>
+                        </a>
+                    </div>
+                    <div class="hero__countdown" id="countdown">
+                        <div class="countdown__item">
+                            <span class="countdown__number" id="days">00</span>
+                            <span class="countdown__label">Dias</span>
+                        </div>
+                        <div class="countdown__sep">:</div>
+                        <div class="countdown__item">
+                            <span class="countdown__number" id="hours">00</span>
+                            <span class="countdown__label">Horas</span>
+                        </div>
+                        <div class="countdown__sep">:</div>
+                        <div class="countdown__item">
+                            <span class="countdown__number" id="minutes">00</span>
+                            <span class="countdown__label">Min</span>
+                        </div>
+                        <div class="countdown__sep">:</div>
+                        <div class="countdown__item">
+                            <span class="countdown__number" id="seconds">00</span>
+                            <span class="countdown__label">Seg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> 
+
+        <!-- Marquee -->
+        <div class="marquee">
+            <div class="marquee__track">
+                <span class="marquee__item">Carreira . Inovação . Negócios .</span>
+                <span class="marquee__item">Carreira . Inovação . Negócios .</span>
+                <span class="marquee__item">Carreira . Inovação . Negócios .</span>
+                <span class="marquee__item">Carreira . Inovação . Negócios .</span>
+            </div>
+        </div>
+
+        <!-- Sobre -->
+        <section class="section" id="sobre" style="--section-bg: #F8F9FA;">
+            <div class="section__inner">
+                <aside class="section__sidebar">
+                    <div class="section__label">Sobre o evento</div>
+                </aside>
+                <aside class="section__content">
+                    <h2 class="section__title">Onde a tecnologia encontra o futuro</h2>
+                    <p class="section__text">O CG Tech Day reúne profissionais, empresas, estudantes e especialistas em um único encontro para conectar pessoas, compartilhar conhecimento e explorar novas possibilidades em carreira, inovação, tecnologia e negócios.</p>
+                    <a href="#programacao" class="btn btn--dark btn--lg">
+                        <span>Conheça o evento</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section class="cards" id="cards">
+            <div class="cards__inner">
+                <div class="card" style="--card-bg: #410e83; --card-text: #f1f1f1;">
+                    <div class="card__index">01.</div>
+                    <div class="card__icon"><i class="fa-solid fa-rocket"></i></div>
+                    <div class="card__content">
+                        <h3 class="card__title">O futuro das carreiras em tecnologia</h3>
+                        <p class="card__text">Pessoas, formação e novas possibilidades para quem quer construir uma carreira preparada para o futuro.</p>
+                    </div>
+                </div>
+                <div class="card" style="--card-bg: #e2d23d; --card-text: #23262F;">
+                    <div class="card__index">02.</div>
+                    <div class="card__icon"><i class="fa-solid fa-handshake"></i></div>
+                    <div class="card__content">
+                        <h3 class="card__title">Tarde — Business</h3>
+                        <p class="card__text">Networking estratégico, painéis com líderes de TI e oportunidades de conexão entre empresas e profissionais.</p>
+                    </div>
+                </div>
+                <!--<div class="card" style="--card-bg: #E8E6E3;">
+                    <div class="card__index">03.</div>
+                    <div class="card__icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="card__content">
+                        <h3 class="card__title">Comunidade</h3>
+                        <p class="card__text">Feito por quem faz tecnologia em Campo Grande, para quem faz tecnologia em Campo Grande. Acontece aqui.</p>
+                    </div>
+                </div>
+            </div> -->
+        </section>
+
+        <!-- Stats -->
+        <section class="stats" id="stats">
+            <div class="stats__inner">
+                <div class="stat">
+                    <span class="stat__number" data-target="14">0</span>
+                    <span class="stat__label">Palestrantes</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__number" data-target="30">0</span>
+                    <span class="stat__label">Palestras</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__number" data-target="+16">0</span>
+                    <span class="stat__label">Horas de conteúdo</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programação -->
+        <section class="section" id="programacao" style="--section-bg: #FFFFFF;">
+            <div class="section__inner">
+                <aside class="section__sidebar">
+                    <div class="section__label">Programação</div>
+                </aside>
+                <aside class="section__content">
+                    <h2 class="section__title">Uma manhã para crescer, uma tarde para conectar.</h2>
+                    <p class="section__text">Escolha sua experiência ou vivencie as duas. Manhã para desenvolver suas habilidades e carreira, tarde para fechar parcerias e negócios.</p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Schedule -->
+        <section class="schedule" id="schedule">
+            <video class="schedule__video" autoplay muted loop playsinline poster="assets/hero-bg.jpg">
+                <source src="assets/max.mp4" type="video/mp4">
+            </video>
+            <div class="schedule__toggle">
+                <button class="seg_btn is-active" data-target="morning"><i class="fa-solid fa-sun"></i> Manhã</button>
+                <button class="seg_btn" data-target="afternoon"><i class="fa-solid fa-briefcase"></i> Tarde</button>
+            </div>
+            <div class="schedule__inner">
+                <div class="schedule__track schedule__track--morning is-active" data-track="morning">
+                    <div class="schedule__header">
+                        <i class="fa-solid fa-sun"></i>
+                        <div>
+                            <h3>Manhã</h3>
+                            <span>08h às 12h — Carreira & Desenvolvimento</span>
+                        </div>
+                    </div>
+                    <div class="schedule__list">
+                        <div class="schedule__item">
+                            <span class="schedule__time">08:00</span>
+                            <div class="schedule__info">
+                                <strong>Credenciamento & Café</strong>
+                                <span>Recepção e networking inicial</span>
+                            </div>
+                        </div>
+                        <div class="schedule__item">
+                            <span class="schedule__time">09:00</span>
+                            <div class="schedule__info">
+                                <strong>Abertura</strong>
+                                <span>Boas-vindas e apresentação do evento</span>
+                            </div>
+                        </div>
+                        <div class="schedule__item">
+                            <span class="schedule__time">09:30</span>
+                            <div class="schedule__info">
+                                <strong>Keynote: O Futuro da Carreira Tech em MS</strong>
+                                <span>Como o mercado de tecnologia está evoluindo no estado</span>
+                            </div>
+                        </div>
+                        <div class="schedule__item">
+                            <span class="schedule__time">10:30</span>
+                            <div class="schedule__info">
+                                <strong>Workshops Paralelos</strong>
+                                <span>Hard Skills, Soft Skills e Portfólio</span>
+                            </div>
+                        </div>
+                        <div class="schedule__item">
+                            <span class="schedule__time">11:30</span>
+                            <div class="schedule__info">
+                                <strong>Painel: Transição de Carreira para Tech</strong>
+                                <span>Histórias reais de quem migrou para tecnologia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="schedule__track schedule__track--afternoon" data-track="afternoon">
+                    <div class="schedule__header">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <div>
+                            <h3>Tarde</h3>
+                            <span>13h às 18h — Business & Conexões</span>
+                        </div>
+                    </div>
+                    <div class="schedule__list">
+                        <div class="schedule__item">
+                            <span class="schedule__time">13:00</span>
+                            <div class="schedule__info">
+                                <strong>Almoço & Networking</strong>
+                                <span>Intervalo para conexões estratégicas</span>
+                            </div>
+                        </div>
+                        <div class="schedule__item">
+                            <span class="schedule__time">14:00</span>
+                            <div class="schedule__info">
+                                <strong>Painel: Como Contratar Tech em MS</strong>
+                                <span>Gestores de TI compartilham boas práticas</span>
+                            </div>
+                        </div>
+                        <div class="schedule__item">
+                            <span class="schedule__time">15:00</span>
+                            <div class="schedule__info">
+                                <strong>Speed Networking</strong>
+                                <span>Rodadas rápidas entre profissionais e empresas</span>
+                            </div>
+                        </div>
+                        <div class="schedule__item">
+                            <span class="schedule__time">16:00</span>
+                            <div class="schedule__info">
+                                <strong>Keynote: Inovação e Startups no Centro-Oeste</strong>
+                                <span>O ecossistema de inovação regional</span>
+                            </div>
+                        </div>
+                        <div class="schedule__item">
+                            <span class="schedule__time">17:00</span>
+                            <div class="schedule__info">
+                                <strong>Encerramento & Happy Hour</strong>
+                                <span>Encerramento oficial e confraternização</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee 2 -->
+        <div class="marquee marquee--reverse">
+            <div class="marquee__track">
+                <span class="marquee__item">CG Tech Day — 16.11.2025</span>
+                <span class="marquee__item">CG Tech Day — 16.11.2025</span>
+                <span class="marquee__item">CG Tech Day — 16.11.2025</span>
+                <span class="marquee__item">CG Tech Day — 16.11.2025</span>
+            </div>
+        </div>
+
+        <!-- Palestrantes -->
+        <section class="section" id="palestrantes" style="--section-bg: #F8F9FA;">
+            <div class="section__inner">
+                <aside class="section__sidebar">
+                    <div class="section__label">Palestrantes</div>
+                </aside>
+                <aside class="section__content">
+                    <h2 class="section__title">Quem vai estar no palco.</h2>
+                    <p class="section__text">Profissionais e líderes que fazem a tecnologia acontecer em Mato Grosso do Sul.</p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Speakers Grid -->
+        <section class="speakers" id="speakers">
+            <div class="speakers__inner">
+                <div class="speaker">
+                    <div class="speaker__avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="speaker__info">
+                        <h4>Nome da Palestrante</h4>
+                        <span>Cargo — Empresa</span>
+                    </div>
+                    <span class="speaker__track speaker__track--morning"><i class="fa-solid fa-sun"></i> Manhã</span>
+                </div>
+                <div class="speaker">
+                    <div class="speaker__avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="speaker__info">
+                        <h4>Nome do Palestrante</h4>
+                        <span>Cargo — Empresa</span>
+                    </div>
+                    <span class="speaker__track speaker__track--afternoon"><i class="fa-solid fa-briefcase"></i> Tarde</span>
+                </div>
+                <div class="speaker">
+                    <div class="speaker__avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="speaker__info">
+                        <h4>Nome da Palestrante</h4>
+                        <span>Cargo — Empresa</span>
+                    </div>
+                    <span class="speaker__track speaker__track--morning"><i class="fa-solid fa-sun"></i> Manhã</span>
+                </div>
+                <div class="speaker">
+                    <div class="speaker__avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="speaker__info">
+                        <h4>Nome do Palestrante</h4>
+                        <span>Cargo — Empresa</span>
+                    </div>
+                    <span class="speaker__track speaker__track--afternoon"><i class="fa-solid fa-briefcase"></i> Tarde</span>
+                </div>
+                <div class="speaker">
+                    <div class="speaker__avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="speaker__info">
+                        <h4>Nome da Palestrante</h4>
+                        <span>Cargo — Empresa</span>
+                    </div>
+                    <span class="speaker__track speaker__track--morning"><i class="fa-solid fa-sun"></i> Manhã</span>
+                </div>
+                <div class="speaker">
+                    <div class="speaker__avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="speaker__info">
+                        <h4>Nome do Palestrante</h4>
+                        <span>Cargo — Empresa</span>
+                    </div>
+                    <span class="speaker__track speaker__track--afternoon"><i class="fa-solid fa-briefcase"></i> Tarde</span>
+                </div>
+            </div>
+            <p class="speakers__cta">Quer palestrar? <a href="#">Candidate-se aqui</a></p>
+        </section>
+
+        <!-- Local -->
+        <section class="section section--split" id="local" style="--section-bg: #FFFFFF;">
+            <div class="section__inner">
+                <aside class="section__sidebar">
+                    <div class="section__label">Local</div>
+                </aside>
+                <aside class="section__content section__content--media">
+                    <div class="location">
+                        <div class="location__info">
+                            <h3>Centro de Convenções de Campo Grande</h3>
+                            <p><i class="fa-solid fa-location-dot"></i> Endereço a ser confirmado — Campo Grande, MS</p>
+                            <p><i class="fa-solid fa-clock"></i> 16 de Outubro de 2026 — 09h às 18h</p>
+                            <p><i class="fa-solid fa-parking"></i> Estacionamento próprio</p>
+                            <p><i class="fa-solid fa-bus"></i> Acesso por transporte público</p>
+                        </div>
+                        <div class="location__map">
+                            <div class="location__placeholder">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                                <span>Mapa será inserido aqui</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Inscrição -->
+        <section class="section" id="inscricao" style="--section-bg: #23262F; color: #FFFFFF;">
+            <div class="section__inner">
+                <aside class="section__sidebar">
+                    <div class="section__label" style="background: rgba(255,255,255,0.1); color: #FFF;">Inscrição</div>
+                </aside>
+                <aside class="section__content">
+                    <h2 class="section__title" style="color: #FFFFFF;">Garanta sua vaga.</h2>
+                    <p class="section__text" style="color: rgba(255,255,255,0.7);">Vagas limitadas. Inscreva-se agora e participe do maior evento de tecnologia de MS.</p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Tickets -->
+        <section class="tickets" id="tickets">
+            <div class="tickets__inner">
+                <div class="ticket">
+                    <div class="ticket__header ticket__header--morning">
+                        <i class="fa-solid fa-sun"></i>
+                        <h3>Manhã</h3>
+                        <span>Trilha Carreira</span>
+                    </div>
+                    <div class="ticket__body">
+                        <div class="ticket__price">Gratuito</div>
+                        <ul class="ticket__features">
+                            <li><i class="fa-solid fa-check"></i> Todas as palestras da manhã</li>
+                            <li><i class="fa-solid fa-check"></i> Workshops inclusos</li>
+                            <li><i class="fa-solid fa-check"></i> Coffee break</li>
+                            <li><i class="fa-solid fa-check"></i> Certificado digital</li>
+                        </ul>
+                        <a href="#" class="btn btn--primary btn--lg btn--block">Inscreva-se</a>
+                    </div>
+                </div>
+                <div class="ticket ticket--featured">
+                    <div class="ticket__badge">Mais popular</div>
+                    <div class="ticket__header ticket__header--full">
+                        <i class="fa-solid fa-star"></i>
+                        <h3>Dia Completo</h3>
+                        <span>Manhã + Tarde</span>
+                    </div>
+                    <div class="ticket__body">
+                        <div class="ticket__price">Gratuito</div>
+                        <ul class="ticket__features">
+                            <li><i class="fa-solid fa-check"></i> Acesso total ao evento</li>
+                            <li><i class="fa-solid fa-check"></i> Todas as palestras e workshops</li>
+                            <li><i class="fa-solid fa-check"></i> Speed networking</li>
+                            <li><i class="fa-solid fa-check"></i> Coffee break + almoço</li>
+                            <li><i class="fa-solid fa-check"></i> Certificado digital</li>
+                            <li><i class="fa-solid fa-check"></i> Happy hour</li>
+                        </ul>
+                        <a href="#" class="btn btn--primary btn--lg btn--block">Inscreva-se</a>
+                    </div>
+                </div>
+                <div class="ticket">
+                    <div class="ticket__header ticket__header--afternoon">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <h3>Tarde</h3>
+                        <span>Trilha Business</span>
+                    </div>
+                    <div class="ticket__body">
+                        <div class="ticket__price">Gratuito</div>
+                        <ul class="ticket__features">
+                            <li><i class="fa-solid fa-check"></i> Todas as palestras da tarde</li>
+                            <li><i class="fa-solid fa-check"></i> Speed networking</li>
+                            <li><i class="fa-solid fa-check"></i> Almoço incluso</li>
+                            <li><i class="fa-solid fa-check"></i> Certificado digital</li>
+                        </ul>
+                        <a href="#" class="btn btn--dark btn--lg btn--block">Inscreva-se</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patrocinadores -->
+        <section class="section" id="patrocinadores" style="--section-bg: #F8F9FA;">
+            <div class="section__inner">
+                <aside class="section__sidebar">
+                    <div class="section__label">Realização</div>
+                </aside>
+                <aside class="section__content">
+                    <h2 class="section__title">Quem apoia o CG Tech Day.</h2>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Sponsors -->
+        <section class="sponsors" id="sponsors">
+            <div class="sponsors__inner">
+                <div class="sponsors__group">
+                    <div class="sponsors__label">Patrocinadores</div>
+                    <div class="sponsors__logos">
+                        <div class="sponsor">Empresa 1</div>
+                        <div class="sponsor">Empresa 2</div>
+                        <div class="sponsor">Empresa 3</div>
+                    </div>
+                </div>
+                <div class="sponsors__group">
+                    <div class="sponsors__label">Apoio Institucional</div>
+                    <div class="sponsors__logos">
+                        <div class="sponsor sponsor--institutional">
+                            <i class="fa-solid fa-building-columns"></i>
+                            Prefeitura de Campo Grande
+                        </div>
+                        <div class="sponsor sponsor--institutional">
+                            <i class="fa-solid fa-landmark"></i>
+                            AGETEC
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer__inner">
+            <div class="footer__main">
+                <div class="footer__content">
+                    <h6 class="footer__heading">O encontro de quem faz tecnologia em Mato Grosso do Sul.</h6>
+                    <a href="#inscricao" class="btn btn--primary btn--lg">
+                        <span>Inscreva-se agora</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="footer__info">
+                    <div class="footer__col">
+                        <div class="footer__col-label">Navegue</div>
+                        <ul>
+                            <li><a href="#sobre">Sobre</a></li>
+                            <li><a href="#programacao">Programação</a></li>
+                            <li><a href="#palestrantes">Palestrantes</a></li>
+                            <li><a href="#local">Local</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <div class="footer__col-label">Conecte-se</div>
+                        <ul>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <button class="footer__scroll" id="scrollToTop" aria-label="Voltar ao topo">
+                        Voltar ao topo
+                    </button>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="footer__institutional">
+                    <span>Apoio:</span>
+                    <strong>Prefeitura de Campo Grande</strong>
+                    <span>/</span>
+                    <strong>AGETEC</strong>
+                </div>
+                <div class="footer__copyright">&copy; 2025 CG Tech Day. Todos os direitos reservados.</div>
+            </div>
+            <div class="footer__logo-bg">
+                <span>CG</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
