@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#E0E0E0"/>
+  <circle cx="200" cy="120" r="50" fill="#BDBDBD"/>
+  <rect x="120" y="190" width="160" height="18" rx="9" fill="#BDBDBD"/>
+  <text x="200" y="270" font-family="sans-serif" font-size="18" fill="#9E9E9E" text-anchor="middle">Foto do palestrante</text>
+</svg>
