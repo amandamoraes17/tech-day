@@ -71,13 +71,6 @@ export const speakers = [
   { name: 'Rafael Lima', photo: '/assets/speakers/man.jpeg', role: 'Fundador', org: 'Hub de Negócios', period: 'afternoon', index: '04', tech: 'Negócios & IA', bio: 'Fundou um hub de negócios que conecta empresas de MS a novas parcerias e mercados.' }
 ]
 
-export const experiences = [
-  { icon: 'fa-solid fa-graduation-cap', title: 'Paines', text: 'Especialistas, tendências e mercado', type: 'morning' },
-  { icon: 'fa-solid fa-comments', title: 'Rodas de Conversa', text: 'Trocas, experiências e novas perspectivas', type: 'afternoon' },
-  { icon: 'fa-solid fa-people-group', title: 'Business Lounge', text: 'Negócios, inovação e networking', type: 'afternoon' },
-  { icon: 'fa-solid fa-briefcase', title: 'Arena de Empregabilidade', text: 'Carreira, oportunidades e conexões', type: 'morning' }
-]
-
 export const sponsors = [
   { name: 'TechMS', logo: '/assets/sponsors/techms.svg' },
   { name: 'Inovadora', logo: '/assets/sponsors/inovadora.svg' },

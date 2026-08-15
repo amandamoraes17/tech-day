@@ -15,7 +15,7 @@ export function useReveal(options = {}) {
           observer.unobserve(el)
         }
       },
-      { threshold: 0.35, rootMargin: '0px 0px -20% 0px', ...options }
+      { threshold: 0.1, rootMargin: '0px 0px -10% 0px', ...options }
     )
     observer.observe(el)
     return () => observer.disconnect()

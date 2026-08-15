@@ -24,7 +24,7 @@ export default function Hero() {
         <span className="hero__badge">Campo Grande · MS · 16 de Outubro de 2026</span>
 
         <h1 className="hero__title">
-          A tecnologia de Mato Grosso do Sul<br />tem um dia só dela.
+          A tecnologia de Campo Grande<br />tem um dia só dela.
         </h1>
 
         <div className="hero__subrow">

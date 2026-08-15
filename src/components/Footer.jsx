@@ -1,5 +1,5 @@
 
-import { LinkedinLogoIcon  , InstagramLogoIcon  , WhatsappLogoIcon  } from "@phosphor-icons/react";
+import { LinkedinLogoIcon  , InstagramLogoIcon  , WhatsappLogoIcon, PhoneIcon, AtIcon, MapPinIcon  } from "@phosphor-icons/react";
 
 
 export default function Footer() {
@@ -26,9 +26,9 @@ export default function Footer() {
          <div className="footer__col footer__col--contact">
           <h4 className="footer__col-title">Contato</h4>
           <ul className="footer__contact">
-            <li><i className="fa-solid fa-envelope" /> contato@cgtechday.com.br</li>
-            <li><i className="fa-solid fa-phone" /> (67) 3000-0000</li>
-            <li><i className="fa-solid fa-location-dot" /> Campo Grande, MS</li>
+            <li><AtIcon size={22} weight="regular"/> contato@cgtechday.com.br</li>
+            <li><PhoneIcon size={22} weight="regular"/> (67) 3000-0000</li>
+            <li><MapPinIcon size={22} weight="regular"/> Bioparque Pantanal</li>
           </ul>
         </div>
 
