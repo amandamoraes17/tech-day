@@ -1,27 +1,18 @@
 import { useCountdown } from '../hooks/useCountdown'
 
-function CountdownBox({ value, label }) {
-  return (
-    <div className="countdown__box">
-      <span className="countdown__value">{String(value).padStart(2, '0')}</span>
-      <span className="countdown__label">{label}</span>
-    </div>
-  )
-}
-
 export default function Hero() {
   const { days, hours, minutes, seconds } = useCountdown()
 
   return (
     <section id="topo" className="hero">
       <div className="hero-video" />
-      {<video className="hero__bg-video" autoPlay muted loop playsInline poster="">
+      <video className="hero__bg-video" autoPlay muted loop playsInline poster="">
         <source src="/assets/hero-video.mp4" type="video/mp4" />
-      </video> }
+      </video>
       <div className="hero__dim" />
 
       <div className="hero__content">
-        <span className="hero__badge">Campo Grande · MS · 16 de Outubro de 2026</span>
+        <span className="hero__badge">16 de Outubro de 2026 . Campo Grande </span>
 
         <h1 className="hero__title">
           A tecnologia de Campo Grande<br />tem um dia só dela.
@@ -39,10 +30,34 @@ export default function Hero() {
             </div>
             <div className="hero__countdown">
               <div className="countdown">
-                <CountdownBox value={days} label="Dias" />
-                <CountdownBox value={hours} label="Horas" />
-                <CountdownBox value={minutes} label="Min" />
-                <CountdownBox value={seconds} label="Seg" />
+                <span className="countdown__eyebrow">Faltam</span>
+                <div className="countdown__units">
+                  <div className="countdown__unit">
+                    <span className="countdown__value">{String(days).padStart(2, '0')}</span>
+                    <span className="countdown__label">Dias</span>
+                  </div>
+                  <div className="countdown__unit">
+                    <span className="countdown__value">{String(hours).padStart(2, '0')}</span>
+                    <span className="countdown__label">Horas</span>
+                  </div>
+                  <div className="countdown__unit">
+                    <span className="countdown__value">{String(minutes).padStart(2, '0')}</span>
+                    <span className="countdown__label">Min</span>
+                  </div>
+                  <div className="countdown__unit">
+                    <span className="countdown__value countdown__value--seg" key={seconds}>
+                      {String(seconds).padStart(2, '0')}
+                    </span>
+                    <span className="countdown__label">Seg</span>
+                  </div>
+                </div>
+                <div className="countdown__track">
+                  <span className="countdown__node" />
+                  <span className="countdown__node" />
+                  <span className="countdown__node" />
+                  <span className="countdown__node countdown__node--pulse" />
+                </div>
+                <span className="countdown__date"> Bioparque Pantanal</span>
               </div>
             </div>
           </div>

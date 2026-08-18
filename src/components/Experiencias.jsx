@@ -51,18 +51,15 @@ export default function Experiencias() {
 
         <div className="xp-grid">
           {experiences.map((e, i) => (
-            <Reveal
+            <div
               key={i}
               className={`xp-card ${classMap[e.direction]}`}
-              style={{
-                '--card-accent': e.color.accent,
-                transitionDelay: `${i * 0.12}s`
-              }}
+              style={{ '--card-accent': e.color.accent }}
             >
               <span className="xp-card__icon">{e.icon}</span>
               <h3 className="xp-card__title">{e.title}</h3>
               <p className="xp-card__desc">{e.desc}</p>
-            </Reveal>
+            </div>
           ))}
         </div>
       </div>

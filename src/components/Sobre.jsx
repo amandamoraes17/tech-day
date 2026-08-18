@@ -30,8 +30,8 @@ export default function Sobre() {
         </Reveal>
 
         <div className="cards">
-          {CARDS.map((card) => (
-            <Reveal key={card.variant} className={`card card--${card.variant}`}>
+          {CARDS.map((card, i) => (
+            <Reveal key={card.variant} delay={i * 120} className={`card card--${card.variant}`}>
               <span className="card__tag">{card.tag}</span>
               <h3 className="card__title">{card.title}</h3>
               <p className="card__text">{card.text}</p>

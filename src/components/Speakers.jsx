@@ -99,7 +99,7 @@ export default function Speakers() {
   }
 
   return (
-    <section id="palestrantes" className="section">
+    <section id="palestrantes" className="section section--speakers">
       <div className="container">
         <Reveal className="section__head">
           <span className="eyebrow">Palestrantes</span>

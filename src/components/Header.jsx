@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useScrollSpy } from '../hooks/useScrollSpy'
 
 const NAV_ITEMS = [
   { label: 'Sobre', href: '#sobre' },
@@ -12,6 +13,8 @@ const NAV_ITEMS = [
 export default function Header() {
   const [active, setActive] = useState(false)
   const [open, setOpen] = useState(false)
+  const spyIds = NAV_ITEMS.map((i) => i.href.slice(1))
+  const activeId = useScrollSpy(spyIds)
 
   useEffect(() => {
     const onScroll = () => setActive(window.scrollY > 50)
@@ -30,7 +33,12 @@ export default function Header() {
 
         <nav className={`header__nav ${open ? 'is-open' : ''}`}>
           {NAV_ITEMS.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className={activeId === item.href.slice(1) ? 'is-active' : ''}
+            >
               {item.label}
             </a>
           ))}

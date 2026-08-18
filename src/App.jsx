@@ -10,13 +10,17 @@ import Location from './components/Location'
 import Tickets from './components/Tickets'
 import Sponsors from './components/Sponsors'
 import Footer from './components/Footer'
+import ScrollProgress from './components/ScrollProgress'
+import { useScrollFX } from './hooks/useScrollFX'
 
 export default function App() {
+  useScrollFX()
+
   return (
     <>
       <Header />
-      <main>
-        <Hero />
+      <Hero />
+      <main className="conteudo-sobreposto">
         <Marquee text="Carreira. Inovação. Negócios. " />
         <Sobre />
         <Stats />
@@ -28,6 +32,7 @@ export default function App() {
         <Sponsors />
       </main>
       <Footer />
+      <ScrollProgress />
     </>
   )
 }
