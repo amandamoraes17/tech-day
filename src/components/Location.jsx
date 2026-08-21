@@ -8,7 +8,7 @@ export default function Location() {
           <Reveal className="location__text">
             <span className="eyebrow">Local</span>
             <h2 className="section__title">O Tech Day acontece aqui</h2>
-            <h4 className='sesection__title'>Bioparque Pantanal</h4>
+            <h4 className='location__venue'>Bioparque Pantanal</h4>
             <p className="section__lead">
               Um cenário único para conectar pessoas, ideias e oportunidades em uma experiência que vai muito além do palco.
             </p>
