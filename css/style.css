@@ -238,7 +238,7 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); font-weight: 500; line-hei
 .xp .section__head { margin-bottom: var(--space-xl); }
 .xp .section__title { color: var(--c-ink); }
 .xp .section__lead { color: var(--c-muted-2); }
-.xp .eyebrow { color: color-mix(in srgb, var(--c-green) 80%, var(--c-ink)); }
+.xp .eyebrow { color: var(--c-afternoon); }
 
 .xp-grid {
   display: grid;
