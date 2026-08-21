@@ -65,10 +65,14 @@ export const afternoonTrack = [
 ]
 
 export const speakers = [
-  { name: 'Ana Beatriz', photo: '/assets/speakers/woman.jpeg', role: 'Head de Produto', org: 'TechMS', period: 'morning', index: '01', tech: 'Produto & UX', bio: 'Lidera a área de produto na TechMS, conectando engenharia e negócio para lançar soluções que escalam no ecossistema de MS.' },
-  { name: 'Carlos Mendes', photo: '/assets/speakers/man.jpeg', role: 'CTO', org: 'Startup Campo Grande', period: 'afternoon', index: '02', tech: 'Cloud & DevOps', bio: 'Construiu uma das primeiras startups de tecnologia de Campo Grande e hoje mentora novos negócios no estado.' },
-  { name: 'Juliana Souza', photo: '/assets/speakers/woman.jpeg', role: 'Talent Partner', org: 'Inovadora-MS', period: 'morning', index: '03', tech: 'Carreira em Tech', bio: 'Atua na atração e desenvolvimento de talentos, aproximando profissionais de oportunidades reais no mercado local.' },
-  { name: 'Rafael Lima', photo: '/assets/speakers/man.jpeg', role: 'Fundador', org: 'Hub de Negócios', period: 'afternoon', index: '04', tech: 'Negócios & IA', bio: 'Fundou um hub de negócios que conecta empresas de MS a novas parcerias e mercados.' }
+  { name: 'Ana Beatriz', photo: '/assets/speakers/woman.jpeg', role: 'Head de Produto', org: 'TechMS', period: 'morning', bio: 'Lidera a área de produto na TechMS, conectando engenharia e negócio para lançar soluções que escalam no ecossistema de MS.' },
+  { name: 'Carlos Mendes', photo: '/assets/speakers/man.jpeg', role: 'CTO', org: 'Startup Campo Grande', period: 'afternoon', bio: 'Construiu uma das primeiras startups de tecnologia de Campo Grande e hoje mentora novos negócios no estado.' },
+  { name: 'Juliana Souza', photo: '/assets/speakers/woman.jpeg', role: 'Talent Partner', org: 'Inovadora-MS', period: 'morning', bio: 'Atua na atração e desenvolvimento de talentos, aproximando profissionais de oportunidades reais no mercado local.' },
+  { name: 'Rafael Lima', photo: '/assets/speakers/man.jpeg', role: 'Fundador', org: 'Hub de Negócios', period: 'afternoon', bio: 'Fundou um hub de negócios que conecta empresas de MS a novas parcerias e mercados.' },
+  { name: 'Mariana Costa', photo: '/assets/speakers/woman.jpeg', role: 'Engenheira de Dados', org: 'DataMS', period: 'morning', bio: 'Especialista em pipelines de dados e machine learning, aplicando IA para resolver problemas reais no agronegócio.' },
+  { name: 'Pedro Alves', photo: '/assets/speakers/man.jpeg', role: 'Diretor de Inovação', org: 'Unicamp', period: 'afternoon', bio: 'Lidera programas de aceleração que conectam universidades e empresas para gerar tecnologia com impacto social.' },
+  { name: 'Fernanda Rocha', photo: '/assets/speakers/woman.jpeg', role: 'CEO', org: 'GreenTech MS', period: 'morning', bio: 'Fundou uma startup de tecnologia verde que desenvolve soluções de monitoramento ambiental para o agronegócio.' },
+  { name: 'Lucas Oliveira', photo: '/assets/speakers/man.jpeg', role: 'Líder Técnico', org: 'DevMS', period: 'afternoon', bio: 'Referência em desenvolvimento web no estado, mentor de dezenas de desenvolvedores juniores na comunidade.' }
 ]
 
 export const sponsors = [
@@ -77,5 +81,7 @@ export const sponsors = [
   { name: 'Hub Campo Grande', logo: '/assets/sponsors/hub-campo-grande.svg' },
   { name: 'Startup MS', logo: '/assets/sponsors/startup-ms.svg' },
   { name: 'Conecta', logo: '/assets/sponsors/conecta.svg' },
-  { name: 'Dev Sul', logo: '/assets/sponsors/dev-sul.svg' }
+  { name: 'Dev Sul', logo: '/assets/sponsors/dev-sul.svg' },
+  { name: 'MS Digital', logo: '/assets/sponsors/ms-digital.svg' },
+  { name: 'Cloud Sul', logo: '/assets/sponsors/cloud-sul.svg' }
 ]

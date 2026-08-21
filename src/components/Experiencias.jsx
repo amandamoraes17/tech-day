@@ -1,31 +1,43 @@
 import Reveal from './Reveal'
-import { GraduationCapIcon, BriefcaseMetalIcon, ChatsTeardropIcon, HandshakeIcon} from "@phosphor-icons/react";
+import { RocketIcon, BriefcaseMetalIcon, ChatsTeardropIcon, HandshakeIcon } from "@phosphor-icons/react";
 const experiences = [
   {
     title: 'PAINÉIS',
+    image: '/assets/paines.png',
+    cta: 'Oportunidade para seu futuro',
     desc: 'Especialistas e profissionais compartilham experiências, tendências e perspectivas sobre o futuro da tecnologia, do mercado e das carreiras.',
-    icon: (<GraduationCapIcon size={32} />),
+    icon: (<RocketIcon size={32} />),
+    btnIcon: (<RocketIcon size={18} weight="bold" />),
     color: { accent: 'var(--c-green)' },
     direction: 'left'
   },
   {
     title: 'BUSINESS LOUNGE',
-    desc: 'Negócios, inovação e networking',
+    image: '/assets/lounge.png',
+    cta: 'Leve seu negócio mais longe',
+    desc: 'Um espaço para conectar negócios, inovação e novas possibilidades.',
     icon: (<HandshakeIcon size={32} />),
+    btnIcon: (<HandshakeIcon size={18} weight="bold" />),
     color: { accent: 'var(--c-morning)' },
     direction: 'right'
   },
   {
     title: 'ARENA DE EMPREGABILIDADE',
+    image: '/assets/emprego.png',
+    cta: 'O próximo passo da sua carreira',
     desc: 'Um espaço para aproximar talentos e empresas, explorar oportunidades e criar conexões que podem transformar o próximo passo da sua carreira.',
     icon: (<BriefcaseMetalIcon size={32} />),
+    btnIcon: (<BriefcaseMetalIcon size={18} weight="bold" />),
     color: { accent: 'var(--c-afternoon)' },
     direction: 'left'
   },
   {
     title: 'RODAS DE CONVERSA',
+    image: '/assets/roda.png',
+    cta: 'Compartilhe novas perspectivas',
     desc: 'Conversas mais próximas e abertas para compartilhar experiências, discutir desafios e descobrir diferentes perspectivas sobre tecnologia e futuro.',
     icon: (<ChatsTeardropIcon size={32} />),
+    btnIcon: (<ChatsTeardropIcon size={18} weight="bold" />),
     color: { accent: 'var(--c-base)' },
     direction: 'right'
   }
@@ -56,9 +68,15 @@ export default function Experiencias() {
               className={`xp-card ${classMap[e.direction]}`}
               style={{ '--card-accent': e.color.accent }}
             >
-              <span className="xp-card__icon">{e.icon}</span>
+              <span className="xp-card__icon">{i + 1}</span>
               <h3 className="xp-card__title">{e.title}</h3>
               <p className="xp-card__desc">{e.desc}</p>
+              <div className="xp-card__cta">
+                <button type="button" className="xp-card__btn" aria-label={e.cta || 'Saiba mais'}>
+                  {e.btnIcon}
+                </button>
+                <span className="xp-card__cta-text">{e.cta || 'Saiba mais'}</span>
+              </div>
             </div>
           ))}
         </div>

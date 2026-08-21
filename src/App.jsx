@@ -25,8 +25,8 @@ export default function App() {
         <Sobre />
         <Stats />
         <Schedule />
-        <Speakers />
         <Experiencias />
+        <Speakers />
         <Location />
         <Tickets />
         <Sponsors />

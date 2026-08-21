@@ -26,9 +26,8 @@ export default function Schedule() {
               muted
               loop
               playsInline
-              poster="/assets/hero-bg.jpg"
             >
-              <source src="/assets/max.mp4" type="video/mp4" />
+              <source src="/assets/max2.mp4" type="video/mp4" />
             </video>
           </div>
 
@@ -42,7 +41,7 @@ export default function Schedule() {
                 aria-selected={period === 'morning'}
               >
                 <RocketLaunchIcon className="segmented__icon segmented__icon--morning" size={18} weight="regular" />
-                <span className="segmented__name">Manhã</span>
+                <span className="segmented__name segmented__name--morning">Manhã</span>
               </button>
               <button
                 className={`segmented__btn ${period === 'afternoon' ? 'is-active' : ''}`}
@@ -51,7 +50,7 @@ export default function Schedule() {
                 aria-selected={period === 'afternoon'}
               >
                 <BriefcaseMetalIcon className="segmented__icon segmented__icon--afternoon" size={18} weight="regular" />
-                <span className="segmented__name">Tarde</span>
+                <span className="segmented__name segmented__name--afternoon">Tarde</span>
               </button>
             </div>
 

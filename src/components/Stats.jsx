@@ -1,59 +1,99 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 const STATS = [
-  { value: 1,   label: 'Dia' },
-  { value: 10,  label: 'Mentores' },
-  { value: 30,  label: 'Palestras' },
-  { value: 12,  label: 'horas de evento' }
+  { value: 1,   title: 'Um dia para colocar o futuro em movimento.',               label: 'Dia' },
+  { value: 10,  title: 'Ideias de quem está construindo o futuro da tecnologia.',          label: 'Mentores' },
+  { value: 30,  title: 'Conteúdo para construir novas ideias, experiência e possibilidades.',  label: 'Palestras' },
+  { value: 12,  title: 'Horas para Aprender. Conectar. Mais do que assistir, viver o Tech Day.',          label: 'horas de evento' },
 ]
 
-function useCountUp(target) {
-  const [val, setVal] = useState(0)
-  const [visible, setVisible] = useState(false)
-  const ref = useRef(null)
-  const started = useRef(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !started.current) {
-        started.current = true
-        setVisible(true)
-        const duration = 1400
-        const start = performance.now()
-        const tick = (now) => {
-          const p = Math.min((now - start) / duration, 1)
-          const eased = 1 - Math.pow(1 - p, 3)
-          setVal(Math.round(eased * target))
-          if (p < 1) requestAnimationFrame(tick)
-        }
-        requestAnimationFrame(tick)
-      }
-    }, { threshold: 0.4 })
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [target])
-
-  return [ref, val, visible]
-}
-
-function StatItem({ value, suffix, label }) {
-  const [ref, val, visible] = useCountUp(value)
+function StatItem({ value, suffix, title, label }) {
   return (
-    <div ref={ref} className={`stat reveal ${visible ? 'visible' : ''}`.trim()}>
-      <span className="stat__value">{val}{suffix}</span>
-      <span className="stat__label">{label}</span>
+    <div className="stat">
+      <span className="stat__title">{title}</span>
+      <div className="stat__content">
+        <span className="stat__value">{value}{suffix ? suffix : ''}</span>
+        <span className="stat__label">{label}</span>
+      </div>
     </div>
   )
 }
 
 export default function Stats() {
+  const statsRef = useRef(null)
+
+  useEffect(() => {
+    const el = statsRef.current
+    if (!el) return
+    const block = el.closest('.container--stats') || el
+    const statEls = el.querySelectorAll('.stat')
+
+    let targetP = 0
+    let currentP = 0
+    let raf = 0
+
+    const apply = (p) => {
+      el.style.setProperty('--p', p.toFixed(4))
+
+      const n = STATS.length
+      const rawIndex = p * (n - 1) + 0.5
+
+      statEls.forEach((stat, i) => {
+        const statCenter = i + 0.5
+        const dist = rawIndex - statCenter
+
+        const absDist = Math.abs(dist)
+        const opacity = absDist < 0.5 ? 1 : 0
+
+        stat.style.setProperty('--so', opacity)
+        stat.style.zIndex = opacity ? Math.round((1 - absDist) * 10) : 0
+
+        if (opacity > 0.01) {
+          stat.style.pointerEvents = 'auto'
+        } else {
+          stat.style.pointerEvents = 'none'
+        }
+      })
+    }
+
+    const loop = () => {
+      const diff = targetP - currentP
+      if (Math.abs(diff) < 0.0003) {
+        currentP = targetP
+        apply(currentP)
+        raf = 0
+        return
+      }
+      currentP += diff * 0.05
+      apply(currentP)
+      raf = requestAnimationFrame(loop)
+    }
+
+    const update = () => {
+      const rect = block.getBoundingClientRect()
+      const vh = window.innerHeight
+      const total = Math.max(rect.height - vh, 1)
+      const scrolled = Math.min(Math.max(-rect.top, 0), total)
+      targetP = scrolled / total
+      if (!raf) raf = requestAnimationFrame(loop)
+    }
+
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+      if (raf) cancelAnimationFrame(raf)
+    }
+  }, [])
+
   return (
     <section className="section section--stats">
-      <div className="container">
-        <div className="stats">
-          {STATS.map((s) => (
+      <div className="container container--stats">
+        <div className="stats" ref={statsRef}>
+          <span className="stats__arrow" aria-hidden="true" />
+          {STATS.map((s, i) => (
             <StatItem key={s.label} {...s} />
           ))}
         </div>

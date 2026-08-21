@@ -13,7 +13,7 @@ const PLANS = [
     name: 'Tech Business',
     price: 'Negócios, inovação e conexões',
     text: 'Uma trilha para empresas, empreendedores e profissionais que buscam novas conexões, parcerias e oportunidades de negócio.',
-    features: ['Palestras e conteúdos', 'Business Lounge', 'Networkingo','Pitch de negócios'],
+    features: ['Palestras e conteúdos', 'Business Lounge', 'Networking','Pitch de negócios'],
     cta: 'Inscrever-se',
     variant: 'afternoon',
     highlight: true
@@ -51,7 +51,7 @@ export default function Tickets() {
                   <li key={f}><i className="fa-solid fa-check" /> {f}</li>
                 ))}
               </ul>
-              <a href="#" className="btn btn--primary ticket__cta">{plan.cta}</a>
+              <a href="https://www.sympla.com.br" target="_blank" rel="noopener noreferrer" className="btn btn--primary ticket__cta">{plan.cta}</a>
             </Reveal>
           ))}
         </div>

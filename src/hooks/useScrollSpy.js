@@ -19,8 +19,13 @@ export function useScrollSpy(ids) {
       const pos = window.scrollY + window.innerHeight * 0.4
       let current = sections[0].id
       for (const s of sections) {
-        const top = s.getBoundingClientRect().top + window.scrollY
-        if (top <= pos) current = s.id
+        const rect = s.getBoundingClientRect()
+        const top = rect.top + window.scrollY
+        const bottom = top + rect.height
+        if (pos >= top && pos < bottom) {
+          current = s.id
+          break
+        }
       }
       setActiveId(current)
       ticking = false

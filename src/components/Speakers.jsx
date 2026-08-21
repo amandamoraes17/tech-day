@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Reveal from './Reveal'
 import { speakers } from '../data/content'
 
@@ -7,10 +7,14 @@ const TRACK = {
   afternoon: 'Tarde · Business'
 }
 
-const SPEED = 0.05
-const TWEEN_MS = 850
+const CYCLE_MS = 6000
 
-const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+function getPerPage() {
+  if (typeof window === 'undefined') return 4
+  if (window.innerWidth <= 768) return 1
+  if (window.innerWidth <= 1024) return 3
+  return 4
+}
 
 function SpeakerCard({ s }) {
   return (
@@ -33,69 +37,66 @@ function SpeakerCard({ s }) {
 }
 
 export default function Speakers() {
-  const N = speakers.length
-  const trackRef = useRef(null)
-  const posRef = useRef(0)
-  const stepRef = useRef(0)
-  const tweenRef = useRef(null)
-  const animRef = useRef(null)
-  const lastRef = useRef(0)
-  const pausedRef = useRef(false)
+  const [perPage, setPerPage] = useState(getPerPage)
+  const totalPages = Math.ceil(speakers.length / perPage)
+  const [page, setPage] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const [offset, setOffset] = useState(0)
+  const rafRef = useRef(null)
+  const startRef = useRef(Date.now())
+  const viewportRef = useRef(null)
+
+  const doubled = [...speakers, ...speakers]
 
   useEffect(() => {
-    const measure = () => {
-      const t = trackRef.current
-      if (t && t.firstElementChild) {
-        const gap = parseFloat(getComputedStyle(t).gap) || 0
-        stepRef.current = t.firstElementChild.offsetWidth + gap
-      }
+    const onResize = () => {
+      const newPerPage = getPerPage()
+      setPerPage(newPerPage)
+      setPage(0)
     }
-    measure()
-    window.addEventListener('resize', measure)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
-    const tick = (now) => {
-      const dt = now - (lastRef.current || now)
-      lastRef.current = now
-      let pos = posRef.current
+  const computeOffset = useCallback(() => {
+    if (!viewportRef.current) return 0
+    const w = viewportRef.current.offsetWidth
+    return -(page * w)
+  }, [page])
 
-      if (tweenRef.current) {
-        tweenRef.current.progress += dt
-        const p = Math.min(tweenRef.current.progress / TWEEN_MS, 1)
-        pos = tweenRef.current.from + (tweenRef.current.target - tweenRef.current.from) * easeInOutCubic(p)
-        if (p >= 1) {
-          pos = tweenRef.current.target
-          tweenRef.current = null
-        }
-      } else if (!pausedRef.current) {
-        pos += SPEED * dt
+  useEffect(() => {
+    setOffset(computeOffset())
+  }, [page, computeOffset])
+
+  useEffect(() => {
+    const onResize = () => setOffset(computeOffset())
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [computeOffset])
+
+  useEffect(() => {
+    startRef.current = Date.now()
+
+    const tick = () => {
+      const elapsed = Date.now() - startRef.current
+      const p = Math.min(elapsed / CYCLE_MS, 1)
+      setProgress(p)
+
+      if (p >= 1) {
+        setPage((prev) => (prev + 1) % totalPages)
+        startRef.current = Date.now()
       }
 
-      const setWidth = N * stepRef.current
-      if (setWidth > 0) {
-        const nextPos = ((pos % setWidth) + setWidth) % setWidth
-        pos = pos >= setWidth ? nextPos : pos
-      }
-
-      posRef.current = pos
-      if (trackRef.current) {
-        trackRef.current.style.transform = `translateX(-${pos}px)`
-      }
-      animRef.current = requestAnimationFrame(tick)
+      rafRef.current = requestAnimationFrame(tick)
     }
 
-    animRef.current = requestAnimationFrame(tick)
-    return () => {
-      cancelAnimationFrame(animRef.current)
-      window.removeEventListener('resize', measure)
-    }
-  }, [N])
+    rafRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [totalPages])
 
-  const stepTo = (dir) => {
-    const s = stepRef.current
-    if (!s) return
-    const setWidth = N * s
-    const target = ((Math.round(posRef.current / s) + dir) * s % setWidth + setWidth) % setWidth
-    tweenRef.current = { from: posRef.current, target, progress: 0 }
+  const handleDotClick = (idx) => {
+    setPage(idx)
+    startRef.current = Date.now()
   }
 
   return (
@@ -109,37 +110,31 @@ export default function Speakers() {
           </p>
         </Reveal>
 
-        <div
-          className="speakers-carousel"
-          onMouseEnter={() => { pausedRef.current = true }}
-          onMouseLeave={() => { pausedRef.current = false }}
-        >
-          <button
-            className="speakers-carousel__btn speakers-carousel__btn--prev"
-            aria-label="Anterior"
-            onClick={() => stepTo(-1)}
+        <div className="speakers-viewport" ref={viewportRef}>
+          <div
+            className="speakers-track"
+            style={{ transform: `translateX(${offset}px)` }}
           >
-            <i className="fa-solid fa-arrow-left" />
-          </button>
-
-          <div className="speakers-carousel__viewport">
-            <div className="speakers-track" ref={trackRef}>
-              {speakers.map((s) => (
-                <SpeakerCard key={s.name} s={s} />
-              ))}
-              {speakers.map((s) => (
-                <SpeakerCard key={`dup-${s.name}`} s={s} />
-              ))}
-            </div>
+            {doubled.map((s, i) => (
+              <div key={`${s.name}-${i}`} className="speakers-track__item">
+                <SpeakerCard s={s} />
+              </div>
+            ))}
           </div>
+        </div>
 
-          <button
-            className="speakers-carousel__btn speakers-carousel__btn--next"
-            aria-label="Próximo"
-            onClick={() => stepTo(1)}
-          >
-            <i className="fa-solid fa-arrow-right" />
-          </button>
+        <div className="speakers-dots">
+          {Array.from({ length: totalPages }).map((_, i) => {
+            const isActive = i === page
+            return (
+              <button
+                key={i}
+                className={`speakers-dot ${isActive ? 'is-active' : ''}`}
+                onClick={() => handleDotClick(i)}
+                style={isActive ? { '--dot-progress': `${progress * 100}%` } : undefined}
+              />
+            )
+          })}
         </div>
       </div>
     </section>

@@ -5,15 +5,12 @@ export default function Hero() {
 
   return (
     <section id="topo" className="hero">
-      <div className="hero-video" />
       <video className="hero__bg-video" autoPlay muted loop playsInline poster="">
         <source src="/assets/hero-video.mp4" type="video/mp4" />
       </video>
       <div className="hero__dim" />
 
       <div className="hero__content">
-        <span className="hero__badge">16 de Outubro de 2026 . Campo Grande </span>
-
         <h1 className="hero__title">
           A tecnologia de Campo Grande<br />tem um dia só dela.
         </h1>
@@ -57,7 +54,7 @@ export default function Hero() {
                   <span className="countdown__node" />
                   <span className="countdown__node countdown__node--pulse" />
                 </div>
-                <span className="countdown__date"> Bioparque Pantanal</span>
+                <span className="countdown__date"> 16 de Outubro de 2026 . Bioparque Pantanal</span>
               </div>
             </div>
           </div>

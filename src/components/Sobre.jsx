@@ -19,7 +19,7 @@ const CARDS = [
 
 export default function Sobre() {
   return (
-    <section id="sobre" className="section">
+    <section id="sobre" className="section section--sobre">
       <div className="container">
         <Reveal className="section__head">
           <span className="eyebrow">Sobre o evento</span>
