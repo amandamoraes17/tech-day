@@ -14,7 +14,7 @@ export default function Schedule() {
           <span className="eyebrow">Programação</span>
           <h2 className="section__title">O que rola no dia?</h2>
           <p className="section__lead">
-            Veja o cronograma. A manhã é para carreira, ea tarde é para negócios.
+            Veja o cronograma. A manhã é para carreira, e a tarde é para negócios.
           </p>
         </Reveal>
 
