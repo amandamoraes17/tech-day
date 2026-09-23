@@ -3,7 +3,6 @@ import { RocketIcon, BriefcaseMetalIcon, ChatsTeardropIcon, HandshakeIcon } from
 const experiences = [
   {
     title: 'PAINÉIS',
-    image: '/assets/paines.png',
     cta: 'Oportunidade para seu futuro',
     desc: 'Especialistas e profissionais compartilham experiências, tendências e perspectivas sobre o futuro da tecnologia, do mercado e das carreiras.',
     icon: (<RocketIcon size={32} />),
@@ -13,7 +12,6 @@ const experiences = [
   },
   {
     title: 'BUSINESS LOUNGE',
-    image: '/assets/lounge.png',
     cta: 'Leve seu negócio mais longe',
     desc: 'Um espaço para conectar negócios, inovação e novas possibilidades.',
     icon: (<HandshakeIcon size={32} />),
@@ -23,7 +21,6 @@ const experiences = [
   },
   {
     title: 'ARENA DE EMPREGABILIDADE',
-    image: '/assets/emprego.png',
     cta: 'O próximo passo da sua carreira',
     desc: 'Um espaço para aproximar talentos e empresas, explorar oportunidades e criar conexões que podem transformar o próximo passo da sua carreira.',
     icon: (<BriefcaseMetalIcon size={32} />),
@@ -33,7 +30,6 @@ const experiences = [
   },
   {
     title: 'RODAS DE CONVERSA',
-    image: '/assets/roda.png',
     cta: 'Compartilhe novas perspectivas',
     desc: 'Conversas mais próximas e abertas para compartilhar experiências, discutir desafios e descobrir diferentes perspectivas sobre tecnologia e futuro.',
     icon: (<ChatsTeardropIcon size={32} />),
@@ -68,14 +64,22 @@ export default function Experiencias() {
               className={`xp-card ${classMap[e.direction]}`}
               style={{ '--card-accent': e.color.accent }}
             >
-              <span className="xp-card__icon">{i + 1}</span>
-              <h3 className="xp-card__title">{e.title}</h3>
-              <p className="xp-card__desc">{e.desc}</p>
-              <div className="xp-card__cta">
-                <button type="button" className="xp-card__btn" aria-label={e.cta || 'Saiba mais'}>
-                  {e.btnIcon}
-                </button>
-                <span className="xp-card__cta-text">{e.cta || 'Saiba mais'}</span>
+              <div className="xp-card__visual" aria-hidden="true">
+                <span className="xp-card__visual-index">{String(i + 1).padStart(2, '0')}</span>
+                <span className="xp-card__visual-icon">{e.icon}</span>
+                <span className="xp-card__visual-line xp-card__visual-line--one" />
+                <span className="xp-card__visual-line xp-card__visual-line--two" />
+              </div>
+              <div className="xp-card__body">
+                <span className="xp-card__icon">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="xp-card__title">{e.title}</h3>
+                <p className="xp-card__desc">{e.desc}</p>
+                <div className="xp-card__cta">
+                  <button type="button" className="xp-card__btn" aria-label={e.cta || 'Saiba mais'}>
+                    {e.btnIcon}
+                  </button>
+                  <span className="xp-card__cta-text">{e.cta || 'Saiba mais'}</span>
+                </div>
               </div>
             </div>
           ))}

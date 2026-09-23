@@ -5,24 +5,37 @@ export default function Hero() {
 
   return (
     <section id="topo" className="hero">
-      <video className="hero__bg-video" autoPlay muted loop playsInline poster="">
+      <video className="hero__bg-video" autoPlay muted loop playsInline poster="/assets/hero-bg.jpg" preload="metadata" aria-hidden="true">
         <source src="/assets/hero-video.mp4" type="video/mp4" />
       </video>
       <div className="hero__dim" />
 
       <div className="hero__content">
+        <div className="hero__eyebrow-row" aria-label="Destaques do evento">
+          <span>Evento gratuito</span>
+          <span>Vagas limitadas</span>
+          <span>Certificado</span>
+        </div>
+
         <h1 className="hero__title">
-          A tecnologia de Campo Grande<br />tem um dia só dela.
+          CG Tech Day 2026
         </h1>
+
+        <p className="hero__tagline">Carreira. Inovação. Negócios.</p>
 
         <div className="hero__subrow">
           <p className="hero__subtitle">
-            Pela manhã, profissionais crescendo na carreira. À tarde, empresas e
-            negócios se conectando. Um dia, duas jornadas, um ecossistema.
+            Um encontro para quem quer entrar, crescer e decidir os próximos movimentos da tecnologia em Campo Grande.
+            Pela manhã, carreira. À tarde, conexões de negócio.
           </p>
+          <div className="hero__facts" aria-label="Data e local do evento">
+            <span>16 de outubro de 2026</span>
+            <span>Bioparque Pantanal</span>
+            <span>Campo Grande/MS</span>
+          </div>
           <div className="hero__subactions">
             <div className="hero__actions">
-              <a href="#inscricao" className="btn btn--primary">Garantir minha vaga</a>
+              <a href="#inscricao" className="btn btn--primary">Quero participar gratuitamente</a>
               <a href="#programacao" className="btn btn--ghost">Ver programação</a>
             </div>
             <div className="hero__countdown">

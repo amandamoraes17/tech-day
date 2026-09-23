@@ -29,17 +29,18 @@ export default function Sobre() {
           </p>
         </Reveal>
 
-        <div className="cards">
+        <div className="journey-split" aria-label="Dois momentos do CG Tech Day">
           {CARDS.map((card, i) => (
-            <Reveal key={card.variant} delay={i * 120} className={`card card--${card.variant}`}>
-              <span className="card__tag">{card.tag}</span>
-              <h3 className="card__title">{card.title}</h3>
-              <p className="card__text">{card.text}</p>
-              <div className="card__seeks">
-                <span className="card__seeks-label">Para você que busca:</span>
-                <div className="card__seeks-tags">
+            <Reveal key={card.variant} delay={i * 120} className={`journey-panel journey-panel--${card.variant}`}>
+              <span className="journey-panel__time">{card.tag}</span>
+              <div className="journey-panel__marker" aria-hidden="true">{i + 1}</div>
+              <h3 className="journey-panel__title">{card.title}</h3>
+              <p className="journey-panel__text">{card.text}</p>
+              <div className="journey-panel__seeks">
+                <span className="journey-panel__label">Para você que busca</span>
+                <div className="journey-panel__tags">
                   {card.seeks.map((s) => (
-                    <span key={s} className="card__pill">{s}</span>
+                    <span key={s} className="journey-panel__pill">{s}</span>
                   ))}
                 </div>
               </div>

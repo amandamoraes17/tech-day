@@ -91,6 +91,10 @@ export default function Stats() {
   return (
     <section className="section section--stats">
       <div className="container container--stats">
+        <div className="stats-map__intro" aria-hidden="true">
+          <span>Mapa do dia</span>
+          <strong>Um fluxo entre talentos, empresas e cidade.</strong>
+        </div>
         <div className="stats" ref={statsRef}>
           <span className="stats__arrow" aria-hidden="true" />
           {STATS.map((s, i) => (

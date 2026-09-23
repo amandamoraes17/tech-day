@@ -6,6 +6,7 @@ import Stats from './components/Stats'
 import Schedule from './components/Schedule'
 import Speakers from './components/Speakers'
 import Experiencias from './components/Experiencias'
+import BancoTalentos from './components/BancoTalentos'
 import Location from './components/Location'
 import Tickets from './components/Tickets'
 import Sponsors from './components/Sponsors'
@@ -26,6 +27,7 @@ export default function App() {
         <Stats />
         <Schedule />
         <Experiencias />
+        <BancoTalentos />
         <Speakers />
         <Location />
         <Tickets />
