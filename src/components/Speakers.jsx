@@ -134,7 +134,7 @@ export default function Speakers() {
       <div className="container">
         <Reveal className="section__head">
           <span className="eyebrow">Palestrantes</span>
-          <h2 className="section__title">Quem faz o Tech Day acontecer</h2>
+          <h2 className="section__title">Quem faz o CG Tech Day acontecer</h2>
           <p className="section__lead">
             Profissionais e empreendedores que estão construindo o ecossistema de tecnologia em Mato Grosso do Sul.
           </p>

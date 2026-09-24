@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   LinkedinLogoIcon,
   InstagramLogoIcon,
@@ -7,11 +6,8 @@ import {
   MapPinIcon,
   FileTextIcon,
 } from '@phosphor-icons/react'
-import CurriculumModal from './CurriculumModal'
 
 export default function Footer() {
-  const [modalOpen, setModalOpen] = useState(false)
-
   return (
     <footer className="footer">
       <div className="container footer__inner">
@@ -57,10 +53,10 @@ export default function Footer() {
 
         <div className="footer__col footer__col--talent">
           <h4 className="footer__col-title">Banco de Talentos</h4>
-          <button type="button" className="footer__link" onClick={() => setModalOpen(true)}>
+          <a href="#banco-talentos" className="footer__link">
             <FileTextIcon size={18} weight="regular" aria-hidden="true" />
-            Enviar meu currículo
-          </button>
+            Banco de Talentos
+          </a>
         </div>
 
         <div className="footer__col footer__col--social">
@@ -88,8 +84,6 @@ export default function Footer() {
           <a href="#" className="footer__btn">LGPD</a>
         </div>
       </div>
-
-      <CurriculumModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </footer>
   )
 }

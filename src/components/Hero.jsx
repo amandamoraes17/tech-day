@@ -1,20 +1,56 @@
 import { useCountdown } from '../hooks/useCountdown'
+import { useEffect, useRef } from 'react'
 
 export default function Hero() {
   const { days, hours, minutes, seconds } = useCountdown()
+  const videoRef = useRef(null)
+
+  // Pausa o vídeo se o usuário preferir movimento reduzido
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const applyMotionPref = () => {
+      if (mq.matches) {
+        video.pause()
+      } else {
+        video.play().catch(() => {}) // Silencia erros de autoplay policy
+      }
+    }
+
+    applyMotionPref()
+    mq.addEventListener('change', applyMotionPref)
+    return () => mq.removeEventListener('change', applyMotionPref)
+  }, [])
 
   return (
     <section id="topo" className="hero">
+      {/*
+        Otimizações aplicadas:
+        - poster="/assets/hero-bg.jpg" → exibe imagem estática imediatamente, antes do vídeo carregar (evita flash preto e melhora LCP)
+        - preload="none" → não baixa o vídeo antes do usuário precisar; o poster já cobre a tela
+        - fetchpriority="low" → vídeo tem baixa prioridade, conteúdo crítico carrega primeiro
+        - playsInline → obrigatório para autoplay no iOS (evita fullscreen forçado)
+        - muted → obrigatório para autoplay em todos os navegadores
+        - tabIndex={-1} + aria-hidden → invisível para leitores de tela
+      */}
       <video
+        ref={videoRef}
         className="hero__bg-video"
         autoPlay
         muted
         loop
         playsInline
         poster="/assets/hero-bg.jpg"
-        preload="metadata"
+        preload="none"
+        // @ts-ignore — fetchpriority é atributo HTML5 válido
+        fetchpriority="low"
+        tabIndex={-1}
         aria-hidden="true"
-      />
+      >
+        <source src="/assets/hero-video.mp4" type="video/mp4" />
+      </video>
       <div className="hero__dim" />
 
       <div className="hero__content">
