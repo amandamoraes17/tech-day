@@ -5,9 +5,16 @@ export default function Hero() {
 
   return (
     <section id="topo" className="hero">
-      <video className="hero__bg-video" autoPlay muted loop playsInline poster="/assets/hero-bg.jpg" preload="metadata" aria-hidden="true">
-        <source src="/assets/hero-video.mp4" type="video/mp4" />
-      </video>
+      <video
+        className="hero__bg-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/assets/hero-bg.jpg"
+        preload="metadata"
+        aria-hidden="true"
+      />
       <div className="hero__dim" />
 
       <div className="hero__content">
@@ -18,29 +25,22 @@ export default function Hero() {
         </div>
 
         <h1 className="hero__title">
-          CG Tech Day 2026
+          CG Tech<br />Day 2026
         </h1>
-
-        <p className="hero__tagline">Carreira. Inovação. Negócios.</p>
 
         <div className="hero__subrow">
           <p className="hero__subtitle">
             Um encontro para quem quer entrar, crescer e decidir os próximos movimentos da tecnologia em Campo Grande.
-            Pela manhã, carreira. À tarde, conexões de negócio.
           </p>
-          <div className="hero__facts" aria-label="Data e local do evento">
-            <span>16 de outubro de 2026</span>
-            <span>Bioparque Pantanal</span>
-            <span>Campo Grande/MS</span>
-          </div>
+
           <div className="hero__subactions">
             <div className="hero__actions">
-              <a href="#inscricao" className="btn btn--primary">Quero participar gratuitamente</a>
+              <a href="#inscricao" className="btn btn--primary">Inscreva-se</a>
               <a href="#programacao" className="btn btn--ghost">Ver programação</a>
             </div>
             <div className="hero__countdown">
               <div className="countdown">
-                <span className="countdown__eyebrow">Faltam</span>
+                <span className="countdown__eyebrow">Faltam para o evento</span>
                 <div className="countdown__units">
                   <div className="countdown__unit">
                     <span className="countdown__value">{String(days).padStart(2, '0')}</span>
@@ -67,7 +67,7 @@ export default function Hero() {
                   <span className="countdown__node" />
                   <span className="countdown__node countdown__node--pulse" />
                 </div>
-                <span className="countdown__date"> 16 de Outubro de 2026 . Bioparque Pantanal</span>
+                <span className="countdown__date">16 de Outubro de 2026 · Bioparque Pantanal</span>
               </div>
             </div>
           </div>

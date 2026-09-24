@@ -1,18 +1,19 @@
 import { useEffect, useRef } from 'react'
 
+// Números baseados na capacidade planejada do evento
 const STATS = [
-  { value: 1,   title: 'Um dia para colocar o futuro em movimento.',               label: 'Dia' },
-  { value: 10,  title: 'Ideias de quem está construindo o futuro da tecnologia.',          label: 'Mentores' },
-  { value: 30,  title: 'Conteúdo para construir novas ideias, experiência e possibilidades.',  label: 'Palestras' },
-  { value: 12,  title: 'Horas para Aprender. Conectar. Mais do que assistir, viver o Tech Day.',          label: 'horas de evento' },
+  { value: 1,   title: 'Um dia para colocar o futuro em movimento.',                          label: 'Dia' },
+  { value: 10,  title: 'Mentores disponíveis para rodadas de orientação profissional.',        label: 'Mentores' },
+  { value: 20,  title: 'Atividades entre painéis, workshops e rodas de conversa.',             label: 'Atividades' },
+  { value: 9,   title: 'Horas de conteúdo, conexões e experiências ao longo do dia.',          label: 'Horas de evento' },
 ]
 
-function StatItem({ value, suffix, title, label }) {
+function StatItem({ value, title, label }) {
   return (
     <div className="stat">
       <span className="stat__title">{title}</span>
       <div className="stat__content">
-        <span className="stat__value">{value}{suffix ? suffix : ''}</span>
+        <span className="stat__value">{value}</span>
         <span className="stat__label">{label}</span>
       </div>
     </div>
@@ -41,18 +42,12 @@ export default function Stats() {
       statEls.forEach((stat, i) => {
         const statCenter = i + 0.5
         const dist = rawIndex - statCenter
-
         const absDist = Math.abs(dist)
         const opacity = absDist < 0.5 ? 1 : 0
 
         stat.style.setProperty('--so', opacity)
         stat.style.zIndex = opacity ? Math.round((1 - absDist) * 10) : 0
-
-        if (opacity > 0.01) {
-          stat.style.pointerEvents = 'auto'
-        } else {
-          stat.style.pointerEvents = 'none'
-        }
+        stat.style.pointerEvents = opacity > 0.01 ? 'auto' : 'none'
       })
     }
 
@@ -80,7 +75,7 @@ export default function Stats() {
 
     update()
     window.addEventListener('scroll', update, { passive: true })
-    window.addEventListener('resize', update)
+    window.addEventListener('resize', update, { passive: true })
     return () => {
       window.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
@@ -91,13 +86,14 @@ export default function Stats() {
   return (
     <section className="section section--stats">
       <div className="container container--stats">
-        <div className="stats-map__intro" aria-hidden="true">
+        {/* Não mais aria-hidden — o conteúdo tem significado semântico */}
+        <div className="stats-map__intro">
           <span>Mapa do dia</span>
           <strong>Um fluxo entre talentos, empresas e cidade.</strong>
         </div>
-        <div className="stats" ref={statsRef}>
+        <div className="stats" ref={statsRef} aria-label="Números do evento">
           <span className="stats__arrow" aria-hidden="true" />
-          {STATS.map((s, i) => (
+          {STATS.map((s) => (
             <StatItem key={s.label} {...s} />
           ))}
         </div>

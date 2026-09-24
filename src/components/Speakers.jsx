@@ -4,10 +4,22 @@ import { speakers } from '../data/content'
 
 const TRACK = {
   morning: 'Manhã · Carreira',
-  afternoon: 'Tarde · Business'
+  afternoon: 'Tarde · Negócios'
 }
 
 const CYCLE_MS = 6000
+
+// Placeholders únicos por speaker usando Picsum com seeds descritivos
+const PHOTO_SEEDS = [
+  'speaker-ana-beatriz-techms',
+  'speaker-carlos-mendes-cto',
+  'speaker-juliana-souza-talent',
+  'speaker-rafael-lima-hub',
+  'speaker-mariana-costa-data',
+  'speaker-pedro-alves-innovation',
+  'speaker-fernanda-rocha-ceo',
+  'speaker-lucas-oliveira-tech',
+]
 
 function getPerPage() {
   if (typeof window === 'undefined') return 4
@@ -16,15 +28,13 @@ function getPerPage() {
   return 4
 }
 
-function SpeakerCard({ s }) {
+function SpeakerCard({ s, photoSeed }) {
+  const photoUrl = `https://picsum.photos/seed/${photoSeed}/320/320`
+
   return (
     <article className={`speaker speaker--${s.period}`}>
       <div className="speaker__photo">
-        {s.photo ? (
-          <img src={s.photo} alt={s.name} />
-        ) : (
-          s.name.split(' ').map((n) => n[0]).join('')
-        )}
+        <img src={photoUrl} alt={s.name} />
         <span className="speaker__tag">{TRACK[s.period]}</span>
       </div>
       <div className="speaker__body">
@@ -40,28 +50,33 @@ export default function Speakers() {
   const [perPage, setPerPage] = useState(getPerPage)
   const totalPages = Math.ceil(speakers.length / perPage)
   const [page, setPage] = useState(0)
-  const [progress, setProgress] = useState(0)
+  // Progress como ref para não causar re-render a cada frame
+  const progressRef = useRef(0)
+  const [progressDisplay, setProgressDisplay] = useState(0)
   const [offset, setOffset] = useState(0)
   const rafRef = useRef(null)
   const startRef = useRef(Date.now())
   const viewportRef = useRef(null)
 
+  // Respeita prefers-reduced-motion
+  const prefersReduced =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
   const doubled = [...speakers, ...speakers]
 
   useEffect(() => {
     const onResize = () => {
-      const newPerPage = getPerPage()
-      setPerPage(newPerPage)
+      setPerPage(getPerPage())
       setPage(0)
     }
-    window.addEventListener('resize', onResize)
+    window.addEventListener('resize', onResize, { passive: true })
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
   const computeOffset = useCallback(() => {
     if (!viewportRef.current) return 0
-    const w = viewportRef.current.offsetWidth
-    return -(page * w)
+    return -(page * viewportRef.current.offsetWidth)
   }, [page])
 
   useEffect(() => {
@@ -70,17 +85,29 @@ export default function Speakers() {
 
   useEffect(() => {
     const onResize = () => setOffset(computeOffset())
-    window.addEventListener('resize', onResize)
+    window.addEventListener('resize', onResize, { passive: true })
     return () => window.removeEventListener('resize', onResize)
   }, [computeOffset])
 
+  // Auto-avanço: usa ref para progress, só chama setState na virada de página
+  // ou a cada ~100ms para atualizar o indicador visual — não a cada frame
   useEffect(() => {
+    if (prefersReduced) return
+
     startRef.current = Date.now()
+    let lastDisplayUpdate = 0
 
     const tick = () => {
       const elapsed = Date.now() - startRef.current
       const p = Math.min(elapsed / CYCLE_MS, 1)
-      setProgress(p)
+      progressRef.current = p
+
+      // Atualiza display apenas a cada 100ms para evitar re-renders por frame
+      const now = Date.now()
+      if (now - lastDisplayUpdate > 100) {
+        setProgressDisplay(p)
+        lastDisplayUpdate = now
+      }
 
       if (p >= 1) {
         setPage((prev) => (prev + 1) % totalPages)
@@ -91,12 +118,15 @@ export default function Speakers() {
     }
 
     rafRef.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [totalPages])
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [totalPages, prefersReduced])
 
   const handleDotClick = (idx) => {
     setPage(idx)
     startRef.current = Date.now()
+    setProgressDisplay(0)
   }
 
   return (
@@ -104,9 +134,9 @@ export default function Speakers() {
       <div className="container">
         <Reveal className="section__head">
           <span className="eyebrow">Palestrantes</span>
-          <h2 className="section__title">Quem vai estar lá</h2>
+          <h2 className="section__title">Quem faz o Tech Day acontecer</h2>
           <p className="section__lead">
-            Profissionais e empreendedores que estão movendo a tecnologia.
+            Profissionais e empreendedores que estão construindo o ecossistema de tecnologia em Mato Grosso do Sul.
           </p>
         </Reveal>
 
@@ -117,13 +147,13 @@ export default function Speakers() {
           >
             {doubled.map((s, i) => (
               <div key={`${s.name}-${i}`} className="speakers-track__item">
-                <SpeakerCard s={s} />
+                <SpeakerCard s={s} photoSeed={PHOTO_SEEDS[i % PHOTO_SEEDS.length]} />
               </div>
             ))}
           </div>
         </div>
 
-        <div className="speakers-dots">
+        <div className="speakers-dots" role="tablist" aria-label="Páginas de palestrantes">
           {Array.from({ length: totalPages }).map((_, i) => {
             const isActive = i === page
             return (
@@ -131,7 +161,10 @@ export default function Speakers() {
                 key={i}
                 className={`speakers-dot ${isActive ? 'is-active' : ''}`}
                 onClick={() => handleDotClick(i)}
-                style={isActive ? { '--dot-progress': `${progress * 100}%` } : undefined}
+                role="tab"
+                aria-selected={isActive}
+                aria-label={`Página ${i + 1} de palestrantes`}
+                style={isActive ? { '--dot-progress': `${progressDisplay * 100}%` } : undefined}
               />
             )
           })}

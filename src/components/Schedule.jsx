@@ -1,20 +1,25 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
 import { morningTrack, afternoonTrack } from '../data/content'
-import { RocketLaunchIcon  , BriefcaseMetalIcon  } from "@phosphor-icons/react";
+import { RocketLaunchIcon, BriefcaseMetalIcon } from "@phosphor-icons/react"
 
 export default function Schedule() {
   const [period, setPeriod] = useState('morning')
   const track = period === 'morning' ? morningTrack : afternoonTrack
 
+  // Formata horário no padrão brasileiro: "09:00" → "09h"
+  function formatTime(time) {
+    const [h, m] = time.split(':')
+    return m === '00' ? `${h}h` : `${h}h${m}`
+  }
+
   return (
     <section id="programacao" className="section section--schedule">
       <div className="container">
         <Reveal className="section__head">
-          <span className="eyebrow">Programação</span>
           <h2 className="section__title">O que rola no dia?</h2>
           <p className="section__lead">
-            Veja o cronograma. A manhã é para carreira, e a tarde é para negócios.
+            A manhã é para carreira. A tarde é para negócios. Você decide como aproveitar.
           </p>
         </Reveal>
 
@@ -26,6 +31,7 @@ export default function Schedule() {
               muted
               loop
               playsInline
+              aria-label="Imagens do evento CG Tech Day"
             >
               <source src="/assets/max2.mp4" type="video/mp4" />
             </video>
@@ -64,20 +70,14 @@ export default function Schedule() {
             </div>
 
             <div className={`schedule__list schedule__list--${period}`}>
-              {track.map((item, i) => {
-                const [h, m] = item.time.split(':').map(Number)
-                const ampm = h < 12 ? 'AM' : 'PM'
-                const hr = h % 12 || 12
-                const timeLabel = `${String(hr).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`
-                return (
-                  <Reveal key={`${period}-${i}`} className="schedule__item">
-                    <span className="schedule__time-tag">{timeLabel}</span>
-                    <h3 className="schedule__title">{item.title}</h3>
-                    <span className="schedule__subtitle">{item.tag}</span>
-                    <p className="schedule__desc">{item.desc}</p>
-                  </Reveal>
-                )
-              })}
+              {track.map((item, i) => (
+                <Reveal key={`${period}-${i}`} className="schedule__item">
+                  <span className="schedule__time-tag">{formatTime(item.time)}</span>
+                  <h3 className="schedule__title">{item.title}</h3>
+                  <span className="schedule__subtitle">{item.tag}</span>
+                  <p className="schedule__desc">{item.desc}</p>
+                </Reveal>
+              ))}
             </div>
           </div>
         </div>

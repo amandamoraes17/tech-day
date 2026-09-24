@@ -7,7 +7,6 @@ const NAV_ITEMS = [
   { label: 'Experiências', href: '#experiencias' },
   { label: 'Palestrantes', href: '#palestrantes' },
   { label: 'Local', href: '#local' },
-  { label: 'Patrocinadores', href: '#patrocinadores' }
 ]
 
 export default function Header() {
@@ -19,7 +18,7 @@ export default function Header() {
   useEffect(() => {
     const onScroll = () => setActive(window.scrollY > 50)
     onScroll()
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -43,7 +42,7 @@ export default function Header() {
             </a>
           ))}
           <a href="#inscricao" className="header__cta" onClick={() => setOpen(false)}>
-            Quero participar
+            Inscreva-se
           </a>
         </nav>
 

@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
-import { FileTextIcon, LinkedinLogoIcon, TicketIcon } from '@phosphor-icons/react'
+import { FileTextIcon, LinkedinLogoIcon } from '@phosphor-icons/react'
 
-// Cole aqui a URL da sua implantação do Google Apps Script
 const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzx6W4zovx0qN1ecl_F_C34V35P1CuSbVH1nkcPleo8vENoI5pS0v-Qx77dJEDdfyUgjA/exec'
 
 export default function BancoTalentos() {
@@ -28,8 +27,6 @@ export default function BancoTalentos() {
     try {
       await fetch(SHEET_ENDPOINT, {
         method: 'POST',
-        // O Apps Script exige no-cors; a resposta não é legível,
-        // mas os dados chegam na planilha normalmente.
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -52,7 +49,6 @@ export default function BancoTalentos() {
             Cadastre seu perfil para receber oportunidades, mentorias e conexões com empresas parceiras do ecossistema de tecnologia de Campo Grande.
           </p>
           <div className="talent-bank__message">
-            {/* <BriefcaseMetalIcon size={24} weight="bold" /> */}
             <p>
               O cadastro não substitui a inscrição no evento. Ele ajuda recrutadores e parceiros a conhecerem seu momento profissional.
             </p>
@@ -74,13 +70,10 @@ export default function BancoTalentos() {
                 >
                   Garantir minha inscrição no evento
                 </a>
-                {/* <button type="button" className="btn btn--secondary" onClick={() => setSent(false)}>
-                  Cadastrar outro perfil
-                </button> */}
               </div>
             </div>
           ) : (
-            <form className="talent-form" onSubmit={handleSubmit}>
+            <form className="talent-form" onSubmit={handleSubmit} noValidate>
               <div className="talent-form__row">
                 <label className="talent-form__field">
                   <span>Nome completo</span>
@@ -88,7 +81,7 @@ export default function BancoTalentos() {
                 </label>
                 <label className="talent-form__field">
                   <span>E-mail</span>
-                  <input name="email" type="email" placeholder="voce@email.com" required />
+                  <input name="email" type="email" placeholder="seu@email.com" required />
                 </label>
               </div>
 
@@ -129,7 +122,8 @@ export default function BancoTalentos() {
 
               <label className="talent-form__field">
                 <span>Mensagem rápida</span>
-                <textarea name="message" rows="4" placeholder="Conte em poucas linhas o que você busca no evento." />
+                <textarea name="message" rows="4" placeholder="Ex: busco minha primeira oportunidade em desenvolvimento web..." />
+                <p className="talent-form__helper">Opcional. Conte o que você busca no evento em poucas linhas.</p>
               </label>
 
               <div className="talent-form__footer">

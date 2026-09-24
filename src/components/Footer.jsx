@@ -1,8 +1,13 @@
-
 import { useState } from 'react'
-import { LinkedinLogoIcon  , InstagramLogoIcon  , WhatsappLogoIcon, PhoneIcon, AtIcon, MapPinIcon, FileTextIcon  } from "@phosphor-icons/react";
+import {
+  LinkedinLogoIcon,
+  InstagramLogoIcon,
+  WhatsappLogoIcon,
+  AtIcon,
+  MapPinIcon,
+  FileTextIcon,
+} from '@phosphor-icons/react'
 import CurriculumModal from './CurriculumModal'
-
 
 export default function Footer() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -10,9 +15,16 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer__inner">
+
         <div className="footer__col footer__col--brand">
           <div className="footer__brand">
-            <img className="footer__realization-logo" src="/assets/logo-agetec.png" alt="Realização" />
+            <img
+              className="footer__realization-logo"
+              src="/assets/logo-agetec.png"
+              alt="Realização: Agetec"
+              width="120"
+              height="40"
+            />
             <p className="footer__tagline">A tecnologia de Campo Grande em um só dia.</p>
           </div>
         </div>
@@ -27,20 +39,26 @@ export default function Footer() {
             <a href="#inscricao">Inscrição</a>
           </div>
         </div>
-        
-         <div className="footer__col footer__col--contact">
+
+        <div className="footer__col footer__col--contact">
           <h4 className="footer__col-title">Contato</h4>
           <ul className="footer__contact">
-            <li><AtIcon size={22} weight="regular"/> contato@cgtechday.com.br</li>
-            <li><PhoneIcon size={22} weight="regular"/> (67) 3000-0000</li>
-            <li><MapPinIcon size={22} weight="regular"/> Bioparque Pantanal</li>
+            <li>
+              <AtIcon size={22} weight="regular" aria-hidden="true" />
+              {/* Substitua pelo e-mail real antes de publicar */}
+              <span>contato@cgtechday.com.br</span>
+            </li>
+            <li>
+              <MapPinIcon size={22} weight="regular" aria-hidden="true" />
+              <span>Bioparque Pantanal, Campo Grande/MS</span>
+            </li>
           </ul>
         </div>
 
         <div className="footer__col footer__col--talent">
           <h4 className="footer__col-title">Banco de Talentos</h4>
           <button type="button" className="footer__link" onClick={() => setModalOpen(true)}>
-            <FileTextIcon size={18} weight="regular" />
+            <FileTextIcon size={18} weight="regular" aria-hidden="true" />
             Enviar meu currículo
           </button>
         </div>
@@ -48,12 +66,19 @@ export default function Footer() {
         <div className="footer__col footer__col--social">
           <h4 className="footer__col-title">Redes sociais</h4>
           <div className="footer__social">
-            <a href="#" aria-label="Instagram"><InstagramLogoIcon size={22} weight="regular" /></a>
-            <a href="#" aria-label="LinkedIn"><LinkedinLogoIcon size={22} weight="regular" /></a>
-            <a href="#" aria-label="WhatsApp"><WhatsappLogoIcon size={22} weight="regular" /></a>
+            {/* Substitua os href pelas URLs reais antes de publicar */}
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram do CG Tech Day">
+              <InstagramLogoIcon size={22} weight="regular" />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn do CG Tech Day">
+              <LinkedinLogoIcon size={22} weight="regular" />
+            </a>
+            <a href="https://wa.me/5567900000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp do CG Tech Day">
+              <WhatsappLogoIcon size={22} weight="regular" />
+            </a>
           </div>
-          <a href="#inscricao" className="btn btn--primary footer__cta">Inscreva-se</a>
         </div>
+
       </div>
 
       <div className="footer__copy">

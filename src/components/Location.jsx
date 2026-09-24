@@ -29,6 +29,8 @@ export default function Location() {
               className="location__photo"
               src="/assets/bioparque.webp"
               alt="Bioparque Pantanal - local do Tech Day"
+              width="720"
+              height="500"
               loading="lazy"
             />
           </Reveal>
